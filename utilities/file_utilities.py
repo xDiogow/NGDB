@@ -1,9 +1,6 @@
 import os
 import json
-from operator import index
-
-from global_variables import DEFAULT_PATH, DATABASES
-from utilities.database_utilities import get_database_by_uid
+from global_variables import DEFAULT_PATH
 
 
 def get_data_path(database_uid):

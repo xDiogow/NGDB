@@ -1,7 +1,8 @@
 import json
 import os.path
+from uuid import uuid4
 
-from utilities.database_utilities import get_database_by_uid, get_database_uid_by_name
+from utilities.database_utilities import get_database_uid_by_name
 from utilities.file_utilities import get_default_path, load_index_data
 
 
@@ -11,7 +12,7 @@ def add_document(database_name: str, index_name: str) -> json:
 
     entries = load_index_data(index_name, database_uid)
     with open(path, mode='w', encoding='utf-8') as file:
-        entry = {"_id": "random-uid", "email":"test@example.com", "password":"hashed..."}
+        entry = {"_id": str(uuid4()), "email":"test@example.com", "password":"hashed..."}
         entries.append(entry)
         json.dump(entries, file)
 

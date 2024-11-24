@@ -35,7 +35,7 @@ def create_database_route():
 @app.route("/create_index", methods=["POST"])
 def create_index_route():
     content = request.json
-    index_name = content["name"]
+    index_name = content["index_name"]
     database_name = content["database"]
 
     return create_index(index_name, database_name)
@@ -50,7 +50,7 @@ def delete_database_route():
 @app.route("/add_document", methods=["POST"])
 def add_document_route():
     content = request.json
-    index_name = content["name"]
+    index_name = content["index_name"]
     database_name = content["database"]
 
     return add_document(database_name, index_name)

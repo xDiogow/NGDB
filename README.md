@@ -18,7 +18,7 @@ Project is not done, I am still working on it.
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/NGDB.git
+   git clone https://github.com/xDiogow/NGDB.git
    cd NGDB
    ```
 2. **Install dependencies**:
@@ -68,7 +68,7 @@ curl -X POST http://127.0.0.1:5000/create_database -H "Content-Type: application
 ### 3. Create an Index
 Send a `POST` request to create an index in a specific database:
 ```bash
-curl -X POST http://127.0.0.1:5000/create_index -H "Content-Type: application/json" -d '{"name": "test_index", "database": "test_db"}'
+curl -X POST http://127.0.0.1:5000/create_index -H "Content-Type: application/json" -d '{"index_name": "test_index", "database": "test_db"}'
 ```
 
 **Response**:
