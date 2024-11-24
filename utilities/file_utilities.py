@@ -23,14 +23,20 @@ def update_data(database_uid, new_config):
     """
     Update the database configuration file and refresh the DATABASES dictionary.
     """
+
+    # Gets the path to the data
     config_path = get_data_path(database_uid)
+
     try:
+        # Updates the data physically
         with open(config_path, 'w') as file:
             json.dump(new_config, file)
 
+        # Updates the data in memory
         update_local_data(database_uid, new_config)
         return True
     except IOError as e:
+        # To change?
         raise IOError(f"Error writing to data.json: {e}")
 
 def update_local_data(database_uid, data):
@@ -45,12 +51,6 @@ def update_local_data(database_uid, data):
     for key, value in data.items():
         if key != "name":
             DATABASES[database_name][key] = value
-    print(DATABASES)
-    #DATABASES[database_name] = {
-    #    "uid": database_uid,
-    #    "indexes": data["indexes"],
-    #    "created_at": data["created_at"]
-    #}
 
 def load_data(database_uid):
     """

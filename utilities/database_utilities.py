@@ -18,3 +18,6 @@ def get_database_by_uid(database_uid) -> json:
         "code": 404,
         "message": f"No database found with UID: {database_uid}"
     }
+
+def database_exists(database_name) -> bool:
+    return database_name in DATABASES
