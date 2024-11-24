@@ -21,39 +21,63 @@ def ping():
 
 @app.route("/create_database", methods=["POST"])
 def create_database_route():
-    content = request.json
-    database_name = content["name"]
+    try:
+        content = request.json
+        database_name = content["name"]
 
-    if database_name in DATABASES:
+        if database_name in DATABASES:
+            return {
+                "code": 409,
+                "message": f"Database {database_name} already exists!"
+            }
+
+        return create_database(database_name)
+    except:
         return {
-            "code": 409,
-            "message": f"Database {database_name} already exists!"
+            "code": 400,
+            "message": f"Please make sure your arguments are correct."
         }
-
-    return create_database(database_name)
-
 @app.route("/create_index", methods=["POST"])
 def create_index_route():
-    content = request.json
-    index_name = content["index_name"]
-    database_name = content["database"]
+    try:
+        content = request.json
+        index_name = content["index_name"]
+        database_name = content["database"]
 
-    return create_index(index_name, database_name)
+        return create_index(index_name, database_name)
+    except:
+        return {
+            "code": 400,
+            "message": f"Please make sure your arguments are correct."
+        }
 
 @app.route("/delete_database", methods=["DELETE"])
 def delete_database_route():
-    content = request.json
-    database_name = content["database"]
+    try:
+        content = request.json
+        database_name = content["database"]
 
-    return delete_database(database_name)
+        return delete_database(database_name)
+    except:
+        return {
+            "code": 400,
+            "message": f"Please make sure your arguments are correct."
+        }
 
 @app.route("/add_document", methods=["POST"])
 def add_document_route():
-    content = request.json
-    index_name = content["index_name"]
-    database_name = content["database"]
+    try:
+        content = request.json
+        index_name = content["index_name"]
+        database_name = content["database"]
+        content = content["content"]
 
-    return add_document(database_name, index_name)
+        return add_document(database_name, index_name, content)
+    except:
+        return {
+            "code": 400,
+            "message": f"Please make sure your arguments are correct."
+        }
 
 @app.route("/get_databases", methods=["GET"])
 def get_databases():
