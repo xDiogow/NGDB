@@ -10,7 +10,7 @@ def get_data_path(database_uid):
 def get_default_path(database_uid):
     return os.path.join(DEFAULT_PATH, database_uid)
 
-def get_folder_names(directory):
+def get_folder_names(directory) -> list:
     """
     Get the names of all folders in the given directory.
     """
@@ -19,7 +19,7 @@ def get_folder_names(directory):
         if os.path.isdir(os.path.join(directory, item))
     ]
 
-def update_data(database_uid, new_config):
+def update_data(database_uid, new_config) -> bool:
     """
     Update the database configuration file and refresh the DATABASES dictionary.
     """
@@ -39,7 +39,9 @@ def update_data(database_uid, new_config):
         # To change?
         raise IOError(f"Error writing to data.json: {e}")
 
-def update_local_data(database_uid, data):
+
+# maybe make this return something?
+def update_local_data(database_uid, data) -> None:
     global DATABASES
 
     if "name" not in data:
@@ -52,7 +54,7 @@ def update_local_data(database_uid, data):
         if key != "name":
             DATABASES[database_name][key] = value
 
-def load_data(database_uid):
+def load_data(database_uid) -> json:
     """
     Load the configuration for a database.
     """

@@ -5,7 +5,7 @@ from utilities.database_utilities import database_exists
 from utilities.file_utilities import get_default_path, update_data
 from global_variables import DATABASES
 
-def create_index(index_name, database_name):
+def create_index(index_name: str, database_name: str) -> json:
     """
     Create an index for a specified database.
     """
@@ -17,11 +17,13 @@ def create_index(index_name, database_name):
             "message": f"Database {database_name} doesn't exist!"
         }
 
-    # Garbage code
+    # Get Database UID to be able to save it.
     database_uid = DATABASES[database_name]["uid"]
     database = DATABASES[database_name]
+
     database["name"] = database_name
     database["indexes"].append(index_name)
+
     update_data(database_uid, database)
 
     # Create an empty index file

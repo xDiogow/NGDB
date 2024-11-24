@@ -7,7 +7,7 @@ from global_variables import DEFAULT_PATH, DATABASES
 from utilities.file_utilities import update_data
 
 
-def create_database(database_name):
+def create_database(database_name: str) -> json:
     """
     Create a database configuration and update the data file.
     """
@@ -42,7 +42,7 @@ def create_database(database_name):
             "message": f"NGDB has failed to create database {database_name}."
         }
 
-def delete_database(database_name):
+def delete_database(database_name: str) -> json:
     try:
 
         # Updates the memory
@@ -71,3 +71,9 @@ def create_database_folder() -> str:
 
     # Returns the unique ID of the database
     return database_uid
+
+def add_document(database_name: str) -> json:
+    return {
+        "code": 200,
+        "message": f"Successfully added a new document in {database_name}!"
+    }
