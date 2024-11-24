@@ -158,7 +158,6 @@ NGDB/
 
 ## Current Limitations ⚠️
 
-- **Data storage not implemented yet**: Currently, data is not persisted to JSON files.
 - **Scalability**: NGDB is not designed for high-performance or large-scale data operations.
 - **No advanced features**: Limited to basic database and index creation for now.
 
