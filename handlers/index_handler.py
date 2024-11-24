@@ -29,7 +29,7 @@ def create_index(index_name: str, database_name: str) -> json:
     # Create an empty index file
     index_path = os.path.join(get_default_path(database_uid), f"{index_name}.json")
     with open(index_path, "w") as json_file:
-        json.dump({}, json_file)
+        json.dump([], json_file)
 
     # Returns a response to user
     return {

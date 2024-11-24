@@ -1,11 +1,17 @@
 import os
 import json
+from operator import index
+
 from global_variables import DEFAULT_PATH, DATABASES
 from utilities.database_utilities import get_database_by_uid
 
 
 def get_data_path(database_uid):
     return os.path.join(DEFAULT_PATH, database_uid, "data.json")
+
+def get_index_data_path(database_uid, index_name):
+    return os.path.join(DEFAULT_PATH, database_uid, index_name + ".json")
+
 
 def get_default_path(database_uid):
     return os.path.join(DEFAULT_PATH, database_uid)
@@ -19,21 +25,21 @@ def get_folder_names(directory) -> list:
         if os.path.isdir(os.path.join(directory, item))
     ]
 
-def update_data(database_uid, new_config) -> bool:
+def update_data(database_uid, new_data) -> bool:
     """
     Update the database configuration file and refresh the DATABASES dictionary.
     """
 
     # Gets the path to the data
-    config_path = get_data_path(database_uid)
+    data_path = get_data_path(database_uid)
 
     try:
         # Updates the data physically
-        with open(config_path, 'w') as file:
-            json.dump(new_config, file)
+        with open(data_path, 'w') as file:
+            json.dump(new_data, file)
 
         # Updates the data in memory
-        update_local_data(database_uid, new_config)
+        update_local_data(database_uid, new_data)
         return True
     except IOError as e:
         # To change?
@@ -58,9 +64,20 @@ def load_data(database_uid) -> json:
     """
     Load the configuration for a database.
     """
-    config_path = get_data_path(database_uid)
+    data_path = get_data_path(database_uid)
     try:
-        with open(config_path, 'r') as file:
+        with open(data_path, 'r') as file:
             return json.load(file)
     except Exception as e:
-        raise IOError(f"Error reading the file {config_path}: {e}")
+        raise IOError(f"Error reading the file {data_path}: {e}")
+
+def load_index_data(index_name, database_uid) -> json:
+    """
+    Load the configuration for a database.
+    """
+    data_path = get_index_data_path(database_uid, index_name)
+    try:
+        with open(data_path, 'r') as file:
+            return json.load(file)
+    except Exception as e:
+        raise IOError(f"Error reading the file {data_path}: {e}")

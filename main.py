@@ -5,6 +5,7 @@ import logging
 from flask import Flask, request
 from global_variables import DATABASES
 from handlers.database_handler import create_database, delete_database
+from handlers.document_handler import add_document
 from handlers.index_handler import create_index
 from utilities.global_utilities import find_databases
 
@@ -45,6 +46,14 @@ def delete_database_route():
     database_name = content["database"]
 
     return delete_database(database_name)
+
+@app.route("/add_document", methods=["POST"])
+def add_document_route():
+    content = request.json
+    index_name = content["name"]
+    database_name = content["database"]
+
+    return add_document(database_name, index_name)
 
 @app.route("/get_databases", methods=["GET"])
 def get_databases():

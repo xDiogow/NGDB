@@ -71,9 +71,3 @@ def create_database_folder() -> str:
 
     # Returns the unique ID of the database
     return database_uid
-
-def add_document(database_name: str) -> json:
-    return {
-        "code": 200,
-        "message": f"Successfully added a new document in {database_name}!"
-    }

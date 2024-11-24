@@ -19,5 +19,8 @@ def get_database_by_uid(database_uid) -> json:
         "message": f"No database found with UID: {database_uid}"
     }
 
+def get_database_uid_by_name(database_name) -> json:
+    return DATABASES[database_name]["uid"]
+
 def database_exists(database_name) -> bool:
     return database_name in DATABASES
