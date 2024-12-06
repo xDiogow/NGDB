@@ -1,6 +1,7 @@
 # NGDB (Not Good Database) 📦
 
 NGDB is a lightweight, simple-to-use NoSQL database system designed for minimal use cases where traditional databases might feel like overkill. It’s **not good**—but it gets the job done (eventually)! 🚀
+This project has never been finished and it current code base is very bad. please ignore this project!
 
 ---
 
